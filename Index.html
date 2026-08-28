@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منيو المطعم والكافي - الفخامة والأناقة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+        body {
+            background-color: #1a1512;
+            color: #f3efe6;
+            padding-bottom: 50px;
+        }
+        header {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, #2a221d, #120f0d);
+            border-bottom: 2px solid #c5a059;
+        }
+        header h1 {
+            color: #c5a059;
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+        header p {
+            color: #b0a89f;
+            font-size: 14px;
+        }
+        .categories {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px;
+            background: #221c18;
+            overflow-x: auto;
+            white-space: nowrap;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .cat-btn {
+            background: transparent;
+            border: 1px solid #c5a059;
+            color: #f3efe6;
+            padding: 8px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+        .cat-btn.active, .cat-btn:hover {
+            background: #c5a059;
+            color: #1a1512;
+            font-weight: 700;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+        .section-title {
+            color: #c5a059;
+            font-size: 20px;
+            margin: 25px 0 15px;
+            border-right: 4px solid #c5a059;
+            padding-right: 10px;
+        }
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+        .menu-item {
+            background: #2a221d;
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            transition: 0.3s;
+        }
+        .menu-item:hover {
+            border-color: #c5a059;
+            transform: translateY(-2px);
+        }
+        .item-details h3 {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: #fff;
+        }
+        .item-details p {
+            font-size: 12px;
+            color: #b0a89f;
+        }
+        .item-price {
+            font-size: 16px;
+            font-weight: 700;
+            color: #c5a059;
+            background: rgba(197, 160, 89, 0.1);
+            padding: 5px 10px;
+            border-radius: 8px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #7a7067;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>اسم المطعم والكافي</h1>
+        <p>أشهى المأكولات وأفخم المشروبات بين أيديكم</p>
+    </header>
+
+    <div class="categories">
+        <button class="cat-btn active" onclick="filterMenu('all')">الكل</button>
+        <button class="cat-btn" onclick="filterMenu('meals')}}">الوجبات الرئيسية</button>
+        <button class="cat-btn" onclick="filterMenu('fastfood')">وجبات سريعة ومشاوي</button>
+        <button class="cat-btn" onclick="filterMenu('coffee')">القهوة والمشروبات الساخنة</button>
+        <button class="cat-btn" onclick="filterMenu('cold')">المشروبات الباردة</button>
+        <button class="cat-btn" onclick="filterMenu('dessert')">الحلويات</button>
+    </div>
+
+    <div class="container">
+        
+        <div class="section-title">الوجبات الرئيسية</div>
+        <div class="menu-grid">
+            <div class="menu-item" data-category="meals">
+                <div class="item-details">
+                    <h3>كبسة لحم فاخرة</h3>
+                    <p>أرز بسمتي مع لحم طازج ومكسرات محمصة</p>
+                </div>
+                <div class="item-price">45 د.أ</div>
+            </div>
+            <div class="menu-item" data-category="meals">
+                <div class="item-details">
+                    <h3>صينية دجاج بالفرن</h3>
+                    <p>دجاج متبل على الطريقة الخاصة مع بطاطس</p>
+                </div>
+                <div class="item-price">30 د.أ</div>
+            </div>
+        </div>
+
+        <div class="section-title">المشاوي والوجبات السريعة</div>
+        <div class="menu-grid">
+            <div class="menu-item" data-category="fastfood">
+                <div class="item-details">
+                    <h3>مشاوي مشكلة (كيلو)</h3>
+                    <p>شيش طاووق، كباب، وتكة لحم مع سلطات</p>
+                </div>
+                <div class="item-price">35 د.أ</div>
+            </div>
+            <div class="menu-item" data-category="fastfood">
+                <div class="item-details">
+                    <h3>برجر ديلوكس</h3>
+                    <p>لحم برجر خاص، جبنة شيدر وصوص مميز</p>
+                </div>
+                <div class="item-price">12 د.أ</div>
+            </div>
+        </div>
+
+        <div class="section-title">القهوة والمشروبات الساخنة</div>
+        <div class="menu-grid">
+            <div class="menu-item" data-category="coffee">
+                <div class="item-details">
+                    <h3>إسبريسو مزدوج</h3>
+                    <p>مستخلص من حبوب بن فاخرة</p>
+                </div>
+                <div class="item-price">4 د.أ</div>
+            </div>
+            <div class="menu-item" data-category="coffee">
+                <div class="item-details">
+                    <h3>كابتشينو إيطالي</h3>
+                    <p>إسبريسو مع حليب مكثف ورغوة كريمية</p>
+                </div>
+                <div class="item-price">5 د.أ</div>
+            </div>
+        </div>
+
+        <div class="section-title">المشروبات الباردة والعصائر</div>
+        <div class="menu-grid">
+            <div class="menu-item" data-category="cold">
+                <div class="item-details">
+                    <h3>آيس لاتيه كراميل</h3>
+                    <p>إسبريسو، حليب بارد وصوص كراميل</p>
+                </div>
+                <div class="item-price">6 د.أ</div>
+            </div>
+            <div class="menu-item" data-category="cold">
+                <div class="item-details">
+                    <h3>ماتشا لاتيه مثلج</h3>
+                    <p>ماتشا يابانية أصلية مع حليب كريمي</p>
+                </div>
+                <div class="item-price">7 د.أ</div>
+            </div>
+        </div>
+
+        <div class="section-title">الحلويات</div>
+        <div class="menu-grid">
+            <div class="menu-item" data-category="dessert">
+                <div class="item-details">
+                    <h3>تشيز كيك فانيليا</h3>
+                    <p>مع طبقة صوص الفراولة أو التوت</p>
+                </div>
+                <div class="item-price">5 د.أ</div>
+            </div>
+            <div class="menu-item" data-category="dessert">
+                <div class="item-details">
+                    <h3>كيكة الشوكولاتة</h3>
+                    <p>جاتوه شوكولاتة غني بالكريمة</p>
+                </div>
+                <div class="item-price">6 د.أ</div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; 2026</p>
+    </footer>
+
+    <script>
+        function filterMenu(category) {
+            const buttons = document.querySelectorAll('.cat-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const items = document.querySelectorAll('.menu-item');
+            const sections = document.querySelectorAll('.section-title');
+
+            if (category === 'all') {
+                items.forEach(item => item.style.display = 'flex');
+                sections.forEach(section => section.style.display = 'block');
+            } else {
+                sections.forEach(section => section.style.display = 'none');
+                items.forEach(item => {
+                    if (item.getAttribute('data-category') === category) {
+                        item.style.display = 'flex';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>
